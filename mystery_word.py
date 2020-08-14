@@ -10,6 +10,27 @@ def get_word():
     return word
 
 
+def game_difficulty():
+    difficulty = ''
+    modes = ['easy', 'normal', 'hard']
+    while(difficulty not in modes):
+        try:
+            difficulty = input(
+                'Please choose the level of difficulty: Easy, Normal or Hard? ')
+            if difficulty.lower() == 'easy':
+                game_mode = 'easy'
+                return game_mode
+            elif difficulty.lower() == 'normal':
+                game_mode = 'normal'
+                return game_mode
+            elif difficulty.lower() == 'hard':
+                game_mode = 'hard'
+                return game_mode
+        except:
+            raise ValueError
+            continue
+
+
 def get_user_guess():
     guess = input("Guess a letter ")
     # this print statement is not necessary but you could use it to help confirm what's happening
@@ -59,4 +80,5 @@ def play_game():
 
 if __name__ == "__main__":
     # play_game()
-    get_word()
+    # get_word()
+    game_difficulty()
