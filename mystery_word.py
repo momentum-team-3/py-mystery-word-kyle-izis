@@ -16,26 +16,44 @@ def game_difficulty():
     while(difficulty not in modes):
         try:
             difficulty = input(
-                'Please choose the level of difficulty: Easy, Normal or Hard? ')
-            if difficulty.lower() == 'easy':
+                'Please choose the level of difficulty: Easy, Normal or Hard? ').lower()
+            if difficulty == 'easy':
                 game_mode = 'easy'
-                return game_mode
-            elif difficulty.lower() == 'normal':
+            elif difficulty == 'normal':
                 game_mode = 'normal'
-                return game_mode
-            elif difficulty.lower() == 'hard':
+            elif difficulty == 'hard':
                 game_mode = 'hard'
-                return game_mode
         except:
             raise ValueError
             continue
+    return game_mode
 
 
 def get_user_guess():
-    guess = input("Guess a letter ")
-    # this print statement is not necessary but you could use it to help confirm what's happening
-    print(f"You guessed {guess}")
+    guess = ' '
+    while(len(guess) == 1):
+        try:
+            guess = ''
+            guess = input("Guess ONE letter: ").lower()
+            if (len(guess) > 1):
+                print('Game only evaluates ONE character at a time')
+            elif (len(guess) == 0):
+                print('Please enter a valid input of ONE ASCII character')
+            elif (len(guess) == 1 and guess.isalpha()):
+                print(f"Your guess was: {guess}")
+                break
+            else:
+                print('This program does not accept numbers or special characters.')
+        except:
+            pass
     return guess  # when this function is called, we want to get back what the user guessed
+
+
+def guess_in_word(guess, word):
+    if guess in word:
+        return True
+    else:
+        return False
 
 
 def show_blanks_or_letters(word):
@@ -44,7 +62,7 @@ def show_blanks_or_letters(word):
     output = ''
     for letter in word:
         output += (" _ ")
-    print(output)
+    print('\n' + output + '\n')
 
 
 def play_game():
@@ -60,8 +78,8 @@ def play_game():
     # record the guesses
     # possible implementation: set up a list to store the user guess in
     # where and when do we need access to this? Consider where you might store this information and how you will access it and change it
-    guesses = []
-    guesses.append(guess)  # add the guess to the list
+    # guesses = []
+    # guesses.append(guess)  # add the guess to the list
 
     # record the number of tries (wrong guesses) -> maybe do this later
 
@@ -81,4 +99,5 @@ def play_game():
 if __name__ == "__main__":
     # play_game()
     # get_word()
-    game_difficulty()
+    # game_difficulty()
+    get_user_guess()
