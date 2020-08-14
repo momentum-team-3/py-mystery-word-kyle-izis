@@ -1,7 +1,12 @@
+import random
+
+
 def get_word():
     # open the file to get its contents
-    # choose one word at random to be The Word that should be guessed
-    word = "pig"  # change this to the word you choose from the file
+    with open('words.txt') as words:
+        wordList = words.readlines()
+        # choose one word at random to be The Word that should be guessed
+        word = random.choice(wordList)
     return word
 
 
@@ -53,4 +58,5 @@ def play_game():
 
 
 if __name__ == "__main__":
-    play_game()
+    # play_game()
+    get_word()
