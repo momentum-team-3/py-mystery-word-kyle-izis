@@ -7,7 +7,7 @@ def get_word():
         wordList = words.readlines()
         # choose one word at random to be The Word that should be guessed
         word = random.choice(wordList)
-    return wordd
+    return word
 
 
 def game_difficulty():
@@ -50,20 +50,30 @@ def get_user_guess():
     return guess  # when this function is called, we want to get back what the user guessed
 
 
-def guess_in_word(guess, word):
-    if guess in word:
-        return True
-    else:
-        return False
+# def guess_in_word(guess=None, word):
+#     if guess in word:
+#         return True
+#     else:
+#         return False
 
 
-def show_blanks_or_letters(word):
+def show_blanks_or_letters(guess, word):
     # we will have to alter this:
     # if the letter has been guessed, we should show letters instead of blanks
     output = ''
     for letter in word:
-        output += (" _ ")
-    print('\n' + output + '\n')
+        if letter == guess:
+            output += f' {guess} '
+        else:
+            output += " _ "
+    print('\n' + output + + '\n')
+
+
+def show_blanks(word):
+    output = ''
+    for letter in word:
+        output += ' _ '
+    print(f'\n{output}: {len(word)} letters \n')
 
 
 def play_game():
@@ -71,10 +81,11 @@ def play_game():
     word = get_word()
 
     # show the user blanks for each letter in the word
-    show_blanks_or_letters(word)
+    show_blanks(word)
     # have some way for the user to make a guess
     # let's put it in a function!
     guess = get_user_guess()
+    show_blanks_or_letters(guess, word)
 
     # record the guesses
     # possible implementation: set up a list to store the user guess in
@@ -98,7 +109,8 @@ def play_game():
 
 
 if __name__ == "__main__":
-    # play_game()
-    # get_word()
+    play_game()
+    # word = get_word()
+    # show_blanks(word)
     # game_difficulty()
-    get_user_guess()
+    # get_user_guess()
