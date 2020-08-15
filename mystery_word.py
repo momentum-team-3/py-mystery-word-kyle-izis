@@ -66,7 +66,7 @@ def show_blanks_or_letters(guess, word):
             output += f' {guess} '
         else:
             output += " _ "
-    print('\n' + output + + '\n')
+    print(f'\n  {output} \n')
 
 
 def show_blanks(word):
@@ -79,33 +79,37 @@ def show_blanks(word):
 def play_game():
     # choose a word
     word = get_word()
+    while(True):
+        guess = get_user_guess()
+        try:
+            # show the user blanks for each letter in the word
+            show_blanks(word)
+            # have some way for the user to make a guess
+            # let's put it in a function!
+            show_blanks_or_letters(guess, word)
+            # record the guesses
+            # possible implementation: set up a list to store the user guess in
+            # where and when do we need access to this? Consider where you might store this information and how you will access it and change it
+            # guesses = []
+            # guesses.append(guess)  # add the guess to the list
 
-    # show the user blanks for each letter in the word
-    show_blanks(word)
-    # have some way for the user to make a guess
-    # let's put it in a function!
-    guess = get_user_guess()
-    show_blanks_or_letters(guess, word)
+            # record the number of tries (wrong guesses) -> maybe do this later
 
-    # record the guesses
-    # possible implementation: set up a list to store the user guess in
-    # where and when do we need access to this? Consider where you might store this information and how you will access it and change it
-    # guesses = []
-    # guesses.append(guess)  # add the guess to the list
-
-    # record the number of tries (wrong guesses) -> maybe do this later
-
-    # compare the guess to the letters in the word.
-    # this is definitely a tricky part. Can you think of how you could do this?
-    # is the user's guess one of the letters?
-    # restated: is the users's guess (letter) in the word?
-    # if the letter is in the word
-    # show the letter instead of a blank
-    # if the letter is not in the word
-    # show the blank
-    # and subtract one try
-    # show the blanks/filled-in-letters to the user again
-    # Ask user for a guess again...
+            # compare the guess to the letters in the word.
+            # this is definitely a tricky part. Can you think of how you could do this?
+            # is the user's guess one of the letters?
+            # restated: is the users's guess (letter) in the word?
+            # if the letter is in the word
+            # show the letter instead of a blank
+            # if the letter is not in the word
+            # show the blank
+            # and subtract one try
+            # show the blanks/filled-in-letters to the user again
+            # Ask user for a guess again...
+        except KeyboardInterrupt:
+            break
+        except:
+            continue
 
 
 if __name__ == "__main__":
