@@ -7,7 +7,7 @@ def get_word():
         wordList = words.readlines()
         # choose one word at random to be The Word that should be guessed
         word = random.choice(wordList)
-    return word
+    return wordd
 
 
 def game_difficulty():
@@ -30,10 +30,9 @@ def game_difficulty():
 
 
 def get_user_guess():
-    guess = ' '
-    while(len(guess) == 1):
+    guess = ''
+    while(True):
         try:
-            guess = ''
             guess = input("Guess ONE letter: ").lower()
             if (len(guess) > 1):
                 print('Game only evaluates ONE character at a time')
@@ -44,8 +43,10 @@ def get_user_guess():
                 break
             else:
                 print('This program does not accept numbers or special characters.')
+        except KeyboardInterrupt:
+            break
         except:
-            pass
+            continue
     return guess  # when this function is called, we want to get back what the user guessed
 
 
